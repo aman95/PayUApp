@@ -23,6 +23,13 @@
                 android:id="@+id/btn_graph_activity"
                 android:onClick="changeToGraph"
                 />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/trending_stocks_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/btn_graph_activity"
+                android:background="@color/material_blue_grey_800"
+                />
 
 
         </RelativeLayout>

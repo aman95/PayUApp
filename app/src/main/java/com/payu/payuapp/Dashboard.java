@@ -1,22 +1,36 @@
 package com.payu.payuapp;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-
-
-import com.payu.payuapp.preferences.setSharedPreferences;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.payu.payuapp.graphics.Graph;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class Dashboard extends ActionBarActivity {
+
+    protected List<FeedItem> feedItems = new ArrayList<>();
+    protected StockAdapter adapter;
 
     private Toolbar toolbar;
     @Override
@@ -33,6 +47,50 @@ public class Dashboard extends ActionBarActivity {
         //Setting up Navigation Drawer
         Navigation_Drawer drawer_fragment = (Navigation_Drawer) getSupportFragmentManager().findFragmentById(R.id.fragment_Navigation_Drawer);
         drawer_fragment.setUp(R.id.fragment_Navigation_Drawer, (DrawerLayout) findViewById(R.id.drawerLayout_Dashboard), toolbar);
+
+        //Setting up recycler view for trending Stocks
+        RecyclerView trendingStocksList = (RecyclerView)findViewById(R.id.trending_stocks_list);
+        trendingStocksList.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        trendingStocksList.setLayoutManager(llm);
+        adapter = new StockAdapter(this, feedItems);
+        trendingStocksList.setAdapter(adapter);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "http://10.100.86.148/payuapi/public/api/v1/stock/trending", null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONObject data = response.getJSONObject("data");
+                    Iterator<?> keys = data.keys();
+
+                    while( keys.hasNext() ) {
+                        String key = (String) keys.next();
+                        if (data.get(key) instanceof JSONObject) {
+                            JSONObject jsonObject = data.getJSONObject(key);
+                            String company_name =jsonObject.getString("name");
+
+
+                            FeedItem feedItem = new FeedItem(company_name, "h");
+                            feedItems.add(feedItem);
+
+                        }
+                    }
+
+                    adapter.notifyDataSetChanged();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Test", error.getMessage());
+            }
+        });
+
+        AppController.getInstance().addToRequestQueue(jsonObjectRequest, "stock");
     }
 
     @Override
