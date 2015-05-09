@@ -20,6 +20,14 @@
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard" >
         </activity>
+        <activity
+            android:name=".graphics.Graph"
+            android:label="@string/title_activity_graph"
+            android:parentActivityName=".Dashboard" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.payu.payuapp.Dashboard" />
+        </activity>
     </application>
 
 </manifest>

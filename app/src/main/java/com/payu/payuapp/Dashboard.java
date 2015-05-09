@@ -1,12 +1,19 @@
 package com.payu.payuapp;
 
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
+
+
 import com.payu.payuapp.preferences.setSharedPreferences;
+import com.payu.payuapp.graphics.Graph;
 
 
 public class Dashboard extends ActionBarActivity {
@@ -17,18 +24,20 @@ public class Dashboard extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        Toast.makeText(this,"HIIIIII",Toast.LENGTH_SHORT).show();
+
         //Setting up AppBar
         toolbar = (Toolbar)findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
         //Setting up Navigation Drawer
-        //Navigation_Drawer drawer_fragment = (Navigation_Drawer) getSupportFragmentManager().findFragmentById(R.id.fragment_Navigation_Drawer);
-        //drawer_fragment.setUp(R.id.fragment_Dashboard_NavDrawer, (DrawerLayout) findViewById(R.id.drawerLayout_Dashboard), toolbar);
+        Navigation_Drawer drawer_fragment = (Navigation_Drawer) getSupportFragmentManager().findFragmentById(R.id.fragment_Navigation_Drawer);
+        drawer_fragment.setUp(R.id.fragment_Navigation_Drawer, (DrawerLayout) findViewById(R.id.drawerLayout_Dashboard), toolbar);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the activity_graphics_graphmenu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_dashboard, menu);
         return true;
     }
@@ -46,5 +55,10 @@ public class Dashboard extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void changeToGraph(View view) {
+        Intent i = new Intent(this,Graph.class);
+        startActivity(i);
     }
 }

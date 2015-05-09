@@ -17,7 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:id="@+id/btn_graph_activity"
+                android:onClick="changeToGraph"
+                />
 
 
         </RelativeLayout>
@@ -27,8 +32,8 @@
             android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-
-            tools:layout="@layout/fragment_Navigation_Drawer" />
+            android:name="com.payu.payuapp.Navigation_Drawer"
+            tools:layout="@layout/fragment_navigation_drawer" />
 
     </android.support.v4.widget.DrawerLayout>
 
