@@ -25,22 +25,16 @@
                 android:layout_margin="8dp"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                />
-            <Button
-                android:layout_width="50dp"
-                android:layout_height="30dp"
-                android:id="@+id/btn_graph_activity"
-                android:onClick="changeToGraph"
+                android:id="@+id/lead_text1"
                 />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/trending_stocks_list"
+                android:id="@+id/leaderboard_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/btn_graph_activity"
+                android:layout_below="@+id/lead_text1"
                 android:background="@color/material_blue_grey_800"
                 />
-
 
         </RelativeLayout>
 

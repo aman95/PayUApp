@@ -12,4 +12,7 @@
     <string name="leaderBoard">Leaderboard</string>
     <string name="notifications">Notifications</string>
     <string name="title_activity_graph">Graph</string>
+    <string name="title_activity_portfolio">Portfolio</string>
+    <string name="title_activity_leaderboard">Leaderboard</string>
+    <string name="title_activity_notifications">Notifications</string>
 </resources>

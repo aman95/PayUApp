@@ -2,22 +2,15 @@ package com.payu.payuapp;
 
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.payu.payuapp.preferences.setSharedPreferences;
 
@@ -28,7 +21,7 @@ public class Navigation_Drawer extends Fragment {
 
 
     private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
+    private static DrawerLayout mDrawerLayout;
 
     private boolean mUserLearnedDrawer;
     private boolean mFromSavedInstanceState;
@@ -100,6 +93,12 @@ public class Navigation_Drawer extends Fragment {
 
 
     }
+
+    public static void  closeDrawer() {
+        mDrawerLayout.closeDrawer(Gravity.LEFT);
+    }
+
+
 
 
 }
