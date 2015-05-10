@@ -128,7 +128,7 @@ public class Leaderboard extends ActionBarActivity {
 
     }
     public void changeToNotifications(View view) {
-        Intent i = new Intent(this,Notifications.class);
+        Intent i = new Intent(this,BuyStocks.class);
         startActivity(i);
         finish();
 

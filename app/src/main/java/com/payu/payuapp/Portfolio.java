@@ -33,6 +33,8 @@ public class Portfolio extends ActionBarActivity {
         //Setting up Navigation Drawer
         Navigation_Drawer drawer_fragment = (Navigation_Drawer) getSupportFragmentManager().findFragmentById(R.id.fragment_Navigation_Drawer);
         drawer_fragment.setUp(R.id.fragment_Navigation_Drawer, (DrawerLayout) findViewById(R.id.drawerLayout_Dashboard), toolbar);
+
+
     }
 
     @Override
@@ -76,7 +78,7 @@ public class Portfolio extends ActionBarActivity {
 
     }
     public void changeToNotifications(View view) {
-        Intent i = new Intent(this,Notifications.class);
+        Intent i = new Intent(this,BuyStocks.class);
         startActivity(i);
         finish();
 

@@ -20,12 +20,14 @@ public class StockAdapter extends RecyclerView.Adapter<StockListViewHolder> {
         public StockAdapter(Context context, List<FeedItem> feedItemList) {
                 this.feedItemList = feedItemList;
                 this.mContext = context;
+
+
         }
 
 
         @Override
         public StockListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_info, parent,false);
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.stock_info, parent, false);
                 StockListViewHolder mh = new StockListViewHolder(v);
 
                 return mh;
@@ -36,9 +38,14 @@ public class StockAdapter extends RecyclerView.Adapter<StockListViewHolder> {
 
                 FeedItem feedItem = feedItemList.get(position);
 
-                holder.companyLogo.setImageUrl("http://lorempixel.com/50/50", AppController.getInstance().getImageLoader());
+                holder.companyLogo.setImageUrl("http://10.100.86.148/payuapi/public/logos/"+feedItem.getId()+".png", AppController.getInstance().getImageLoader());
 
                 holder.companyName.setText(feedItem.getCompanyName());
+                holder.ticker.setText(feedItem.getTicker());
+                holder.price.setText(feedItem.getPrice());
+                holder.low.setText(feedItem.getLow());
+                holder.high.setText(feedItem.getHigh());
+                holder.companyLogo.setTag(feedItem.getId());
 
         }
 
@@ -48,4 +55,13 @@ public class StockAdapter extends RecyclerView.Adapter<StockListViewHolder> {
 
                 return (null != feedItemList ? feedItemList.size() : 0);
         }
+
+        /*@Override
+        public void onClick(View v) {
+
+                Toast.makeText(v.getContext(), "The Item Clicked is: " + getPosition(), Toast.LENGTH_SHORT).show();
+
+        }*/
 }
+
+

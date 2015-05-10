@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Notifications extends ActionBarActivity {
+public class BuyStocks extends ActionBarActivity {
 
     protected List<FeedItem> feedItems = new ArrayList<>();
     protected StockAdapter adapter;
@@ -72,7 +72,7 @@ public class Notifications extends ActionBarActivity {
 
     public void changeToPortfolio(View view) {
 
-        Intent i = new Intent(this,Notifications.class);
+        Intent i = new Intent(this,BuyStocks.class);
         startActivity(i);
         finish();
 

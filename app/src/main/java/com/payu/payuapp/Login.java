@@ -1,36 +1,43 @@
 package com.payu.payuapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 import com.payu.payuapp.preferences.setSharedPreferences;
 
-public class MainActivity extends ActionBarActivity {
+
+public class Login extends ActionBarActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
-        if(setSharedPreferences.readFromPreferences(this,"username","NO_USER") == "NO_USER") {
-            startActivity(new Intent(this,Login.class));
-            finish();
 
-        } else {
-            Intent i = new Intent(this, Dashboard.class);
-            startActivity(i);
-            finish();
-        }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_login, menu);
         return true;
+    }
+
+    public void login(View view)
+    {
+        EditText phno = (EditText)findViewById(R.id.phone);
+        final String username = phno.getText().toString();
+        EditText pass = (EditText)findViewById(R.id.password);
+        final String Password = pass.getText().toString();
+
+        setSharedPreferences.saveToPreferences(this,"username",username);
+
     }
 
     @Override
@@ -47,4 +54,12 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void changeToSignup(View view)
+    {
+        //Toast.makeText(getApplicationContext(),"llllllllllllllllllllll",Toast.LENGTH_SHORT).show();
+        //Intent j = new Intent(this,signup.class);
+        //startActivity(new Intent(this, signup.class));
+        //finish();
+    }
+   /* */
 }
